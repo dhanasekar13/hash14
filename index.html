@@ -1,0 +1,76 @@
+<html>
+<head>
+<title> hash 14 project</title>
+
+<script src="javascript/main.js"></script>
+  
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+</head>
+
+<body onload="add()">
+<script>
+	
+	function save()
+	{
+ var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              var myObj = this.responseText;
+              console.log(this.responseText);
+              }
+        };
+var val1=$("#name1").val();
+
+          var parameter='projectname='+$(".projectname").val()+'&description='+$(".description").val()+'&hour='+$(".hour").val();
+         
+        xmlhttp.open("POST", "addComment.php", true);
+
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send(parameter);
+	}
+	function add()
+	{
+		 var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              var myObj = this.responseText;
+              evaluate(this.responseText);
+              }
+        };
+
+
+          
+        xmlhttp.open("GET", "addComment.php", true);
+
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send();
+	}
+	function evaluate(val)
+	{
+		console.log(val);
+	}
+	function add1()
+	{
+		$("#a11").prepend("name<input type='text' name='projectname' placeholder='enter the project name'>Description<input type='text' name='description' placeholder='enter the description of the project'>hour<input type='text' name='hour' placeholder='enter the hour '><br>");
+	}
+</script>
+<div class="ful1">
+	<div id="a10">   
+ 			<div id="a11">
+ 			name	<input type="text" name="projectname" placeholder="enter the project name">
+ 			Description	<input type="text" name="description" placeholder="enter the description of the project">
+ 			hour	<input type="text" name="hour" placeholder="enter the hour ">
+			 </div>
+			<div id="a111" style="float:right">
+ 					<button onclick="save()">save</button>
+ 				<button onclick="add1()">add</button>
+ 			</div>
+	</div>
+	<div id="a2"></div>
+</div>
+
+</body>
+</html>
